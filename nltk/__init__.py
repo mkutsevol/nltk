@@ -17,6 +17,7 @@ http://nltk.org/book
 """
 
 import os
+import sys
 
 # //////////////////////////////////////////////////////
 # Metadata
@@ -172,7 +173,17 @@ except ImportError:
 else:
     from nltk import cluster
 
-from nltk.downloader import download, download_shell
+# T78230952
+# from nltk.downloader import download, download_shell
+def download(*args, **kwargs):
+    print(
+        "************** WARNING*WARNING ***************\n"
+        "Usage of this method is highly discouraged.\n"
+        "Use //nltk_data:nltk_data instead.\n"
+        "No data was downloaded, and True was returned.\n"
+        "************** WARNING*WARNING ***************\n",
+        file=sys.stderr)
+    return True
 
 try:
     import tkinter
